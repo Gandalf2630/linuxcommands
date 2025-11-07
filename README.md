@@ -447,3 +447,420 @@ bandit1@bandit:~$ cat < -
 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
 bandit1@bandit:~$ 
 
+BANDIT 2
+
+┌──(kali㉿kali)-[~]
+└─$ ssh bandit2@bandit.labs.overthewire.org -p 2220 
+                         _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+
+backend: gibson-1
+bandit2@bandit.labs.overthewire.org's password: 
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--"
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---" ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing "somegame", then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command "mktemp -d" in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+bandit2@bandit:~$ ls
+--spaces in this filename--
+bandit2@bandit:~$ cd
+bandit2@bandit:~$ cd --spaces in this filename--
+-bash: cd: --: invalid option
+cd: usage: cd [-L|[-P [-e]] [-@]] [dir]
+bandit2@bandit:~$ s
+s: command not found
+bandit2@bandit:~$ cd [-L|[-P [-e]] [-@]] [dir]
+-bash: cd: [-L: No such file or directory
+[-P: command not found
+bandit2@bandit:~$ cd -L
+bandit2@bandit:~$ cd [-L]
+-bash: cd: [-L]: No such file or directory
+bandit2@bandit:~$ cat [-L]
+cat: '[-L]': No such file or directory
+bandit2@bandit:~$ find
+.
+./.bash_logout
+./.bashrc
+./--spaces in this filename--
+./.profile
+bandit2@bandit:~$ find ./.profile
+./.profile
+bandit2@bandit:~$ cd ./.profile
+-bash: cd: ./.profile: Not a directory
+bandit2@bandit:~$ du ./.profile
+4       ./.profile
+bandit2@bandit:~$ s
+s: command not found
+bandit2@bandit:~$ cd ./.bash_logout
+-bash: cd: ./.bash_logout: Not a directory
+bandit2@bandit:~$ cd ./--spaces in this filename--
+-bash: cd: too many arguments
+bandit2@bandit:~$ cd spacesinthisfilename
+-bash: cd: spacesinthisfilename: No such file or directory
+bandit2@bandit:~$ cat --spaces in this filename--
+cat: unrecognized option '--spaces'
+Try 'cat --help' for more information.
+bandit2@bandit:~$ ls
+--spaces in this filename--
+bandit2@bandit:~$ cd
+bandit2@bandit:~$ cd --spaces in this filename-
+-bash: cd: --: invalid option
+cd: usage: cd [-L|[-P [-e]] [-@]] [dir]
+bandit2@bandit:~$ cd dir
+-bash: cd: dir: No such file or directory
+bandit2@bandit:~$ cd e
+-bash: cd: e: No such file or directory
+bandit2@bandit:~$ dir -P
+dir: invalid option -- 'P'
+Try 'dir --help' for more information.
+bandit2@bandit:~$ cd LPe@dir
+-bash: cd: LPe@dir: No such file or directory
+bandit2@bandit:~$ find dir
+find: ‘dir’: No such file or directory
+bandit2@bandit:~$ ls
+--spaces in this filename--
+bandit2@bandit:~$ cd --LPe@dir
+-bash: cd: --: invalid option
+cd: usage: cd [-L|[-P [-e]] [-@]] [dir]
+bandit2@bandit:~$ cd
+bandit2@bandit:~$ cd
+bandit2@bandit:~$ cd s
+-bash: cd: s: No such file or directory
+bandit2@bandit:~$ cat dir
+cat: dir: No such file or directory
+bandit2@bandit:~$ cat -@
+cat: invalid option -- '@'
+Try 'cat --help' for more information.
+bandit2@bandit:~$ cat -e
+s
+s$
+^X^C
+bandit2@bandit:~$ cat -et
+^C
+bandit2@bandit:~$ cat -P
+cat: invalid option -- 'P'
+Try 'cat --help' for more information.
+bandit2@bandit:~$ cat -L
+cat: invalid option -- 'L'
+Try 'cat --help' for more information.
+bandit2@bandit:~$ ls
+--spaces in this filename--
+bandit2@bandit:~$ find spcaes
+find: ‘spcaes’: No such file or directory
+bandit2@bandit:~$ find in
+find: ‘in’: No such file or directory
+bandit2@bandit:~$ find this
+find: ‘this’: No such file or directory
+bandit2@bandit:~$ find filename
+find: ‘filename’: No such file or directory
+bandit2@bandit:~$ cd filename
+-bash: cd: filename: No such file or directory
+bandit2@bandit:~$ find filename
+find: ‘filename’: No such file or directory
+bandit2@bandit:~$ find cd
+find: ‘cd’: No such file or directory
+bandit2@bandit:~$ find LP
+find: ‘LP’: No such file or directory
+bandit2@bandit:~$ ls
+--spaces in this filename--
+bandit2@bandit:~$ cat --filename--
+cat: unrecognized option '--filename--'
+Try 'cat --help' for more information.
+bandit2@bandit:~$ cat spaces
+cat: spaces: No such file or directory
+bandit2@bandit:~$ cat in
+cat: in: No such file or directory
+bandit2@bandit:~$ cat this
+cat: this: No such file or directory
+bandit2@bandit:~$ cat filename
+cat: filename: No such file or directory
+bandit2@bandit:~$ cd spaces
+-bash: cd: spaces: No such file or directory
+bandit2@bandit:~$ cat "spaces in this filename"
+cat: 'spaces in this filename': No such file or directory
+bandit2@bandit:~$ cat spaces\ in\ this\ filename
+cat: 'spaces in this filename': No such file or directory
+bandit2@bandit:~$ cat spaces\ in\ this\ filename
+cat: 'spaces in this filename': No such file or directory
+bandit2@bandit:~$ cat "spaces in this filename"
+cat: 'spaces in this filename': No such file or directory
+bandit2@bandit:~$ cat "spaces in this filename"
+cat: 'spaces in this filename': No such file or directory
+bandit2@bandit:~$ cat ./-
+cat: ./-: No such file or directory
+bandit2@bandit:~$ cat __spaces in this filename__
+cat: __spaces: No such file or directory
+cat: in: No such file or directory
+cat: this: No such file or directory
+cat: filename__: No such file or directory
+bandit2@bandit:~$ find __spaces in this filename__
+find: ‘__spaces’: No such file or directory
+find: ‘in’: No such file or directory
+find: ‘this’: No such file or directory
+find: ‘filename__’: No such file or directory
+bandit2@bandit:~$ ls
+--spaces in this filename--
+bandit2@bandit:~$ ^C
+bandit2@bandit:~$ exit
+logout
+Connection to bandit.labs.overthewire.org closed.
+                                                                                                                                                                                                                                                                                                  
+┌──(kali㉿kali)-[~]
+└─$ ssh bandit2@bandit.labs.overthewire.org -p 2220
+                         _                     _ _ _   
+                        | |__   __ _ _ __   __| (_) |_ 
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_ 
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+                                                       
+
+                      This is an OverTheWire game server. 
+            More information on http://www.overthewire.org/wargames
+
+backend: gibson-1
+bandit2@bandit.labs.overthewire.org's password: 
+Permission denied, please try again.
+bandit2@bandit.labs.overthewire.org's password: 
+
+      ,----..            ,----,          .---.
+     /   /   \         ,/   .`|         /. ./|
+    /   .     :      ,`   .'  :     .--'.  ' ;
+   .   /   ;.  \   ;    ;     /    /__./ \ : |
+  .   ;   /  ` ; .'___,/    ,' .--'.  '   \' .
+  ;   |  ; \ ; | |    :     | /___/ \ |    ' '
+  |   :  | ; | ' ;    |.';  ; ;   \  \;      :
+  .   |  ' ' ' : `----'  |  |  \   ;  `      |
+  '   ;  \; /  |     '   :  ;   .   \    .\  ;
+   \   \  ',  /      |   |  '    \   \   ' \ |
+    ;   :    /       '   :  |     :   '  |--"
+     \   \ .'        ;   |.'       \   \ ;
+  www. `---` ver     '---' he       '---" ire.org
+
+
+Welcome to OverTheWire!
+
+If you find any problems, please report them to the #wargames channel on
+discord or IRC.
+
+--[ Playing the games ]--
+
+  This machine might hold several wargames.
+  If you are playing "somegame", then:
+
+    * USERNAMES are somegame0, somegame1, ...
+    * Most LEVELS are stored in /somegame/.
+    * PASSWORDS for each level are stored in /etc/somegame_pass/.
+
+  Write-access to homedirectories is disabled. It is advised to create a
+  working directory with a hard-to-guess name in /tmp/.  You can use the
+  command "mktemp -d" in order to generate a random and hard to guess
+  directory in /tmp/.  Read-access to both /tmp/ is disabled and to /proc
+  restricted so that users cannot snoop on eachother. Files and directories
+  with easily guessable or short names will be periodically deleted! The /tmp
+  directory is regularly wiped.
+  Please play nice:
+
+    * don't leave orphan processes running
+    * don't leave exploit-files laying around
+    * don't annoy other players
+    * don't post passwords or spoilers
+    * again, DONT POST SPOILERS!
+      This includes writeups of your solution on your blog or website!
+
+--[ Tips ]--
+
+  This machine has a 64bit processor and many security-features enabled
+  by default, although ASLR has been switched off.  The following
+  compiler flags might be interesting:
+
+    -m32                    compile for 32bit
+    -fno-stack-protector    disable ProPolice
+    -Wl,-z,norelro          disable relro
+
+  In addition, the execstack tool can be used to flag the stack as
+  executable on ELF binaries.
+
+  Finally, network-access is limited for most levels by a local
+  firewall.
+
+--[ Tools ]--
+
+ For your convenience we have installed a few useful tools which you can find
+ in the following locations:
+
+    * gef (https://github.com/hugsy/gef) in /opt/gef/
+    * pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
+    * gdbinit (https://github.com/gdbinit/Gdbinit) in /opt/gdbinit/
+    * pwntools (https://github.com/Gallopsled/pwntools)
+    * radare2 (http://www.radare.org/)
+
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+bandit2@bandit:~$ cat ./-
+cat: ./-: No such file or directory
+bandit2@bandit:~$ ls
+--spaces in this filename--
+bandit2@bandit:~$ cat "spaces in this filename"
+cat: 'spaces in this filename': No such file or directory
+bandit2@bandit:~$ cd inhere
+-bash: cd: inhere: No such file or directory
+bandit2@bandit:~$ ls -a
+.  ..  .bash_logout  .bashrc  .profile  --spaces in this filename--
+bandit2@bandit:~$ cd .bash_logout
+-bash: cd: .bash_logout: Not a directory
+bandit2@bandit:~$ cd .bashrc
+-bash: cd: .bashrc: Not a directory
+bandit2@bandit:~$ cd .profile
+-bash: cd: .profile: Not a directory
+bandit2@bandit:~$ cd "spaces in this filename
+> ^C
+bandit2@bandit:~$ cd "spaces in this filename"
+-bash: cd: spaces in this filename: No such file or directory
+bandit2@bandit:~$ cd -bash
+-bash: cd: -b: invalid option
+cd: usage: cd [-L|[-P [-e]] [-@]] [dir]
+bandit2@bandit:~$ cd -L
+bandit2@bandit:~$ cd -P
+bandit2@bandit:~$ cd -E
+-bash: cd: -E: invalid option
+cd: usage: cd [-L|[-P [-e]] [-@]] [dir]
+bandit2@bandit:~$ cd -@
+-bash: cd: -@: invalid option
+cd: usage: cd [-L|[-P [-e]] [-@]] [dir]
+bandit2@bandit:~$ cd dir
+-bash: cd: dir: No such file or directory
+bandit2@bandit:~$ cd [-L]
+-bash: cd: [-L]: No such file or directory
+bandit2@bandit:~$ cd [-P]
+-bash: cd: [-P]: No such file or directory
+bandit2@bandit:~$ cd [-e]]
+-bash: cd: [-e]]: No such file or directory
+bandit2@bandit:~$ cd [-@]]
+-bash: cd: [-@]]: No such file or directory
+bandit2@bandit:~$ cd [dir]
+-bash: cd: [dir]: No such file or directory
+bandit2@bandit:~$ cat spaces/ in/ this/ filename
+cat: spaces/: No such file or directory
+cat: in/: No such file or directory
+cat: this/: No such file or directory
+cat: filename: No such file or directory
+bandit2@bandit:~$ cat "spaces in this filename"
+cat: 'spaces in this filename': No such file or directory
+bandit2@bandit:~$ cat 'spaces in this filename'
+cat: 'spaces in this filename': No such file or directory
+bandit2@bandit:~$ cat space/ in / this/ filename
+cat: space/: No such file or directory
+cat: in: No such file or directory
+cat: /: Is a directory
+cat: this/: No such file or directory
+cat: filename: No such file or directory
+bandit2@bandit:~$ cat spaces/ in/ this/ filename
+cat: spaces/: No such file or directory
+cat: in/: No such file or directory
+cat: this/: No such file or directory
+cat: filename: No such file or directory
+bandit2@bandit:~$ ls -l
+total 4
+-rw-r----- 1 bandit3 bandit2 33 Oct 14 09:26 --spaces in this filename--
+bandit2@bandit:~$ cat 'spaces in this filename'
+cat: 'spaces in this filename': No such file or directory
+bandit2@bandit:~$ cat spaces\ in\ this\ filename
+cat: 'spaces in this filename': No such file or directory
+bandit2@bandit:~$ cat "spaces in this filename"
+cat: 'spaces in this filename': No such file or directory
+bandit2@bandit:~$ cat -- --spaces\ in\ this\ filename--
+MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+bandit2@bandit:~$ 
+
+
